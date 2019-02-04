@@ -14,8 +14,8 @@ export const UploadImage = () => {
       <ImageUploader
         withIcon={false}
         withPreview={true}
-        buttonText="Choose images"
-        imgExtension={['.jpg', '.png']}
+        buttonText="Choose a Coin Image"
+        imgExtension={['.jpg', '.png', '.jpeg']}
         onChange={onChange}
         singleImage={true}
       />
@@ -24,6 +24,4 @@ export const UploadImage = () => {
     </div>
   );
 };
-
-
 export default UploadImage;

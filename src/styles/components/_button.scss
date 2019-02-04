@@ -17,3 +17,7 @@
 .button--secondary {
   background: #888888;
 }
+
+.button--disabled {
+  background: lighten($blue, 20%)
+}

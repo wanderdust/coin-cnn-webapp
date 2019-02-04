@@ -11,8 +11,7 @@ export const startSetCoinPrediction = imageFile => (dispatch, getState) => (
       'Content-Type': imageFile.type
     }
   }).then((response) => {
-    dispatch(setCoinPrediction(response.data.prediction));
-    console.log(response);
+    dispatch(setCoinPrediction(response.data));
   }).catch((error) => {
     dispatch(setCoinPrediction('Error while making a prediction'));
   })

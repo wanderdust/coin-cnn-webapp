@@ -3,23 +3,39 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { startSetCoinPrediction } from '../actions/prediction';
 
-export const UploadImage = ({ startSetCoinPrediction, imageFile }) => {
+export const Predict = ({ startSetCoinPrediction, imageFile, prediction }) => {
   const handleOnClick = () => {
     startSetCoinPrediction(imageFile);
   };
 
   return (
-    <div>
-      <button onClick={handleOnClick} type="button">Send Image</button>
+    <div className="predict">
+      <button
+        onClick={handleOnClick}
+        type="button"
+        disabled={!imageFile}
+        className={`button ${!imageFile && 'button--disabled'}`}
+      >
+        Make Prediction
+      </button>
+
+      {!!prediction && 
+        (
+          <div>
+            <h2>The prediction is:</h2>
+            <p>{prediction}</p>
+          </div>
+        )
+      }
     </div>
   );
 };
 
-UploadImage.defaultProps = {
+Predict.defaultProps = {
   imageFile: ''
 };
 
-UploadImage.propTypes = {
+Predict.propTypes = {
   startSetCoinPrediction: PropTypes.func.isRequired,
   imageFile: PropTypes.oneOfType([
     PropTypes.string,
@@ -28,8 +44,12 @@ UploadImage.propTypes = {
   ])
 };
 
+const mapStateToProps = state => ({
+  prediction: state.prediction.prediction
+});
+
 const mapDispatchToProps = dispatch => ({
   startSetCoinPrediction: imageFile => dispatch(startSetCoinPrediction(imageFile))
 });
 
-export default connect(undefined, mapDispatchToProps)(UploadImage);
+export default connect(mapStateToProps, mapDispatchToProps)(Predict);
