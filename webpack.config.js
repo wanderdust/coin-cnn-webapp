@@ -26,7 +26,7 @@ module.exports = (env) => {
     entry: ['babel-polyfill', './src/app.js'],
     // The final file where compiled data is sent to (bundle.js).
     output: {
-      path: path.join(__dirname, 'public', 'dist'),
+      path: path.join(__dirname, 'static', 'dist'),
       filename: 'bundle.js'
     },
     module: {
@@ -80,12 +80,12 @@ module.exports = (env) => {
     devtool: isProduction ? 'source-map' : 'inline-source-map',
     // Webpack server for development.
     devServer: {
-      contentBase: path.join(__dirname, 'public'),
+      contentBase: path.join(__dirname, 'static'),
       // We tell the server we will be using React for routing and not the server.
       historyApiFallback: true,
       publicPath: '/dist/',
       proxy: {
-        "/api": "http://localhost:5000"
+        '/api': 'http://localhost:5000'
       }
     }
   };
