@@ -16,16 +16,9 @@ exports[`should render header correctly 1`] = `
         to="/"
       >
         <h1>
-          Boilerplate
+          COIN IDENTIFIER
         </h1>
       </Link>
-      <button
-        className="button button--link"
-        onClick={[Function]}
-        type="button"
-      >
-        Logout
-      </button>
     </div>
   </div>
 </header>

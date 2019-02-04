@@ -10,6 +10,7 @@ import numpy as np
 from torchvision import models
 import os
 import json
+from io import BytesIO
 
 publicPath = '{}/'.format(os.getcwd()) 
 
@@ -35,7 +36,8 @@ my_model = load_model(publicPath + 'api/checkpoint_cnn_resnet152.pth').to('cpu')
 
 
 def process_image (image):
-  image_pil = Image.open(image)
+  data = BytesIO(image)
+  image_pil = Image.open(data)
   width, height = image_pil.size
   if width > height:
       image_pil.thumbnail((np.Inf, 256))

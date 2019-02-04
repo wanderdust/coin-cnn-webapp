@@ -1,0 +1,60 @@
+.section {
+  overflow: hidden;
+  position: relative;
+  padding: 5rem 1rem;
+  justify-content: center;
+}
+
+.section--basic {
+  background-color: white;
+}
+
+.section--light-grey {
+  background-color: $off-white;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+}
+
+.section__title {
+  text-align: center;
+  font-weight: $light-bold;
+}
+
+.section__subtitle {
+  max-width: 60rem;
+  margin: 0 auto 5rem;
+  text-align: center;
+}
+
+.section__content {
+  max-width: 89rem;
+  margin: 0 auto;
+}
+
+.sub-section {
+  padding: $m-size 0;
+}
+
+.sub-section__title {
+  padding: 0 $m-size;
+}
+
+.section-filter {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+// Styles for desktop
+@media (min-width: $desktop-breakpoint) {
+  .section {
+    padding: 7.5rem 1.6rem;
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import DashboardPage from '../components/DashboardPage';
+import MainPage from '../components/MainPage';
 import Header from '../components/Header';
 import NotFoundPage from '../components/NotFoundPage';
 
@@ -12,7 +12,7 @@ const AppRouter = () => (
     <div>
       <Header />
       <Switch>
-        <Route path="/" component={DashboardPage} />
+        <Route path="/" component={MainPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

@@ -5,6 +5,7 @@ import {
   compose
 } from 'redux';
 import thunk from 'redux-thunk';
+import predictionReducer from '../reducers/predictionReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -16,7 +17,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export default () => {
   const store = createStore(
     combineReducers({
-      data: {}
+      prediction: predictionReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
   );

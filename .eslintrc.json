@@ -30,6 +30,7 @@
     "no-underscore-dangle": "off",
     "import/no-named-as-default": 0,
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-    "react/prop-types": "warn"
+    "react/prop-types": "warn",
+    "react/jsx-boolean-value": "off"
   }
 }
