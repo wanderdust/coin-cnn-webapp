@@ -5,7 +5,13 @@ export const setCoinPrediction = (prediction = '') => ({
   prediction
 });
 
-export const startSetCoinPrediction = imageFile => (dispatch, getState) => (
+export const setLoadingState = () => ({
+  type: 'SET_LOADING_STATE',
+  prediction: 'loading'
+});
+
+export const startSetCoinPrediction = imageFile => (dispatch, getState) => {
+  dispatch(setLoadingState());
   axios.post('http://localhost:5000/api/predict/', imageFile, {
     headers: {
       'Content-Type': imageFile.type
@@ -14,5 +20,5 @@ export const startSetCoinPrediction = imageFile => (dispatch, getState) => (
     dispatch(setCoinPrediction(response.data));
   }).catch((error) => {
     dispatch(setCoinPrediction('Error while making a prediction'));
-  })
-);
+  });
+};

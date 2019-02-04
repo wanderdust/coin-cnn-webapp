@@ -9,6 +9,11 @@ const predictionReducer = (state = defaultState, action) => {
         ...state,
         prediction: action.prediction
       };
+    case 'SET_LOADING_STATE':
+      return {
+        ...state,
+        prediction: 'loading'
+      };
     default:
       return state;
   }

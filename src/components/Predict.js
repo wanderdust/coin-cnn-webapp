@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { startSetCoinPrediction } from '../actions/prediction';
+import PredictionData from './PredictionData';
+import Loader from './Loader';
 
 export const Predict = ({ startSetCoinPrediction, imageFile, prediction }) => {
   const handleOnClick = () => {
@@ -19,14 +21,8 @@ export const Predict = ({ startSetCoinPrediction, imageFile, prediction }) => {
         Make Prediction
       </button>
 
-      {!!prediction && 
-        (
-          <div>
-            <h2>The prediction is:</h2>
-            <p>{prediction}</p>
-          </div>
-        )
-      }
+      {!!prediction && prediction !== 'loading' && <PredictionData prediction={prediction} />}
+      {prediction === 'loading' && <Loader />}
     </div>
   );
 };
@@ -41,7 +37,8 @@ Predict.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.object
-  ])
+  ]),
+  prediction: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({

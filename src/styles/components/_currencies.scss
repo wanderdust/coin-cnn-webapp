@@ -1,0 +1,12 @@
+.currencies__list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.currencies__column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
