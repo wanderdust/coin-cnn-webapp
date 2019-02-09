@@ -1,5 +1,11 @@
 # COIN IDENTIFIER!
 
+### Install dependencies
+The api for this app is built with python, so make sure you have pip installed so you can install the python packages.
+To install npm and python packages run:
+
+```npm run install-dep```
+
 ### How to set up:
 
 ```npm run dev-server```

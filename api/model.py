@@ -27,8 +27,6 @@ def load_model(filepath):
   model.load_state_dict(checkpoint['state_dict'])
   model.class_to_idx = checkpoint['class_to_idx']
 
-  print('Model Loaded')
-
   return model
 
 
@@ -49,9 +47,13 @@ def process_image (image):
   
   # Convert to numpy and normalize
   np_image = np.array(image_pil)/255
+
+  # mean = [0.2972239085211309 , 0.24976049135203868, 0.28533308036347665]
+  # std = [0.2972239085211309, 0.24976049135203868, 0.28533308036347665]
                                           
   mean = [0.485, 0.456, 0.406]
   std = [0.229, 0.224, 0.225]
+
   np_image = (np_image - mean)/std
   
   # Transpose for image to have the correct dimensions, depth first.
@@ -64,7 +66,6 @@ def process_image (image):
 
 
 def predict(image, model, topk=5):
-  print('Predicting coin...')
   model.eval()
   
   # Load the image

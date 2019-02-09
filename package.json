@@ -5,6 +5,7 @@
   "author": "Pablo",
   "license": "MIT",
   "scripts": {
+    "install-dep": "npm install && pip install -r api/requirements.txt",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server | FLASK_APP=api/api.py flask run",
