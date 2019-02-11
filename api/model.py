@@ -21,7 +21,7 @@ with open(publicPath + 'api/cat_to_name.json', 'r') as f:
 # Load the model from a saved checkpoint
 def load_model(filepath):
   checkpoint = torch.load(filepath)
-  model = models.resnet152(pretrained=False)
+  model = models.resnet34(pretrained=False)
       
   model.fc = checkpoint['fc']
   model.load_state_dict(checkpoint['state_dict'])
@@ -30,7 +30,7 @@ def load_model(filepath):
   return model
 
 
-my_model = load_model(publicPath + 'api/checkpoint_cnn_resnet152.pth').to('cpu')
+my_model = load_model(publicPath + 'api/checkpoint_cnn_resnet34.pth').to('cpu')
 
 
 def process_image (image):
