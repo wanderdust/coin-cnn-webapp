@@ -7,7 +7,7 @@ import torch
 import PIL
 from PIL import Image
 import numpy as np
-from torchvision import models
+import resnet
 import os
 import json
 from io import BytesIO
@@ -20,8 +20,8 @@ with open(publicPath + 'api/cat_to_name.json', 'r') as f:
     
 # Load the model from a saved checkpoint
 def load_model(filepath):
-  checkpoint = torch.load(filepath)
-  model = models.resnet34(pretrained=False)
+  checkpoint = torch.load(filepath, map_location='cpu')
+  model = resnet.resnet34(pretrained=False)
       
   model.fc = checkpoint['fc']
   model.load_state_dict(checkpoint['state_dict'])
