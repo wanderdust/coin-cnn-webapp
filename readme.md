@@ -6,7 +6,7 @@ The api for this app is built with python, so make sure you have `pip` installed
 ```
 $ git clone https://github.com/wanderdust/coin-cnn-webapp.git
 $ cd coin-cnn-webapp
-$ npm install-dep
+$ npm run install-dep
 ```
 
 ## Usage:
