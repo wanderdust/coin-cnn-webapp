@@ -13,9 +13,6 @@
     "start": "node server/server.js | FLASK_APP=api/api.py flask run",
     "heroku-postbuild": "npm run build:prod"
   },
-  "engines": {
-    "node": "9.11.1"
-  },
   "dependencies": {
     "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
