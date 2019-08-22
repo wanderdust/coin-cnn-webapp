@@ -27,12 +27,19 @@ To deactivate the virtual environment:
 ```
 $ deactivate
 ```
-## Usage:
+## Starting the app
 
-Get the server up and running in `localhost:5000`
+1. Run build:
+```
+$ npm run build:dev
+```
+
+2. Get the server up and running in `localhost:5000`
 ```
 $ npm start
 ```
+
+## Development mode
 
 Get the dev server up and running in `localhost:8080`
 ```
@@ -43,12 +50,6 @@ Run the test suite
 
 ```
 $ npm run test
-```
-
-Run build
-
-```
-$ npm run build:prod
 ```
 
 ## How it works:
