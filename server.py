@@ -9,6 +9,7 @@ from PIL import Image
 # Start app
 # Change default location of index.html from ./templates to ./static
 app = Flask(__name__,
+  static_url_path='',
   template_folder='static')
 
 # Activate CORS.
