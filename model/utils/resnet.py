@@ -1,3 +1,11 @@
+'''
+
+* Downloaded from the official repository
+* This way It doesn't need to be downloaded every time
+the program stars
+
+'''
+
 import torch.nn as nn
 import math
 import torch.utils.model_zoo as model_zoo

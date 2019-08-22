@@ -3,9 +3,11 @@
 
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
+import os
 from io import BytesIO
 from PIL import Image
-import model.model as model
+from model.model import make_prediction, load_model, load_cat_to_name
+from model.image import decode_image, transform_image, image_to_tensor
 
 # Start app
 # Change default location of index.html from ./templates to ./static
@@ -16,16 +18,21 @@ app = Flask(__name__,
 # Activate CORS.
 CORS(app, resources={r'/*': {'origins': '*'}})
 
+# Global variables
+publicPath = '{}/'.format(os.getcwd())
+model = load_model(publicPath + 'model/utils/checkpoint_cnn_resnet34.pth')
+cat_to_name = load_cat_to_name(publicPath + 'model/utils/cat_to_name.json')
+
+
 
 @app.route("/api/predict/", methods = ['POST'])
 def root():
-  # Temporary code
-  img = request.data
-  my_model = model.my_model
-  image = model.process_image(img)
-  _, classes = model.predict(image, my_model)
-  prediction = model.get_coin_name(my_model, classes)
-  print(prediction)
+  image = decode_image(request.data)
+  image = transform_image(image)
+  image = image_to_tensor(image)
+
+  # Instantiate the model
+  prediction = make_prediction(image, model, cat_to_name)
 
   return jsonify(prediction)
 
