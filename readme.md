@@ -1,15 +1,45 @@
 # COIN IDENTIFIER!
 
 ## Installation
-The api for this app is built with python, so make sure you have `pip` installed so you can install the python packages. Here is an [installation guide for pip](https://pip.pypa.io/en/stable/installing/).
+This app is built with Javascript and Python, so make sure you have `pip` installed so you can install the python packages. Here is an [installation guide for pip](https://pip.pypa.io/en/stable/installing/).
 
 ```
 $ git clone https://github.com/wanderdust/coin-cnn-webapp.git
 $ cd coin-cnn-webapp
-$ npm run install-dep
 ```
 
-## Usage:
+## Create a virtual environment
+
+Create the [virtual environment ](https://virtualenv.pypa.io/en/latest/) and activate it:
+
+```
+$ virtualenv venv
+$ venv/bin/activate
+```
+
+Install all the dependencies for both javascript and python:
+```
+$ npm install
+$ pip install requirements.txt
+```
+
+To deactivate the virtual environment:
+```
+$ deactivate
+```
+## Starting the app
+
+1. Run build:
+```
+$ npm run build:dev
+```
+
+2. Get the server up and running in `localhost:5000`
+```
+$ npm start
+```
+
+## Development mode
 
 Get the dev server up and running in `localhost:8080`
 ```
@@ -20,12 +50,6 @@ Run the test suite
 
 ```
 $ npm run test
-```
-
-Run build
-
-```
-$ npm run build:prod
 ```
 
 ## How it works:

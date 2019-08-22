@@ -5,12 +5,11 @@
   "author": "Pablo",
   "license": "MIT",
   "scripts": {
-    "install-dep": "npm install && pip install -r api/requirements.txt",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
-    "dev-server": "webpack-dev-server | FLASK_APP=api/api.py flask run",
+    "dev-server": "webpack-dev-server",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
-    "start": "node server/server.js | FLASK_APP=api/api.py flask run",
+    "start": "FLASK_APP=server.py flask run",
     "heroku-postbuild": "npm run build:prod"
   },
   "dependencies": {
