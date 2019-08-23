@@ -20,6 +20,6 @@ export const startSetCoinPrediction = imageFile => (dispatch, getState) => {
   }).then((response) => {
     dispatch(setCoinPrediction(response.data));
   }).catch((error) => {
-    dispatch(setCoinPrediction('Error while making a prediction'));
+    dispatch(setCoinPrediction('error'));
   });
 };

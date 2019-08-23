@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { startSetCoinPrediction } from '../actions/prediction';
 import PredictionData from './PredictionData';
 import Loader from './Loader';
+import ErrorMessage from './ErrorMessage';
 
 export const Predict = ({ startSetCoinPrediction, imageFile, prediction }) => {
   const handleOnClick = () => {
@@ -21,8 +22,20 @@ export const Predict = ({ startSetCoinPrediction, imageFile, prediction }) => {
         Make Prediction
       </button>
 
-      {!!prediction && prediction !== 'loading' && <PredictionData prediction={prediction} />}
-      {prediction === 'loading' && <Loader />}
+      {
+        !!prediction
+        && prediction !== 'loading'
+        && prediction !== 'error'
+        && <PredictionData prediction={prediction} />
+      }
+      {
+        prediction === 'loading'
+        && <Loader />
+      }
+      {
+        prediction === 'error'
+        && <ErrorMessage errorMessage="Error while making a prediction. Try again in a few seconds or try with a different image" />
+      }
     </div>
   );
 };
