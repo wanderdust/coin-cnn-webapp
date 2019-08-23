@@ -65,13 +65,13 @@ def decode_predictions(model, output, classes):
 
     return top_prob, top_class
 
-
+# Pairs the category number with its name
 def get_coin_name (top_class, cat_to_name):
     coin_name = cat_to_name[str(top_class)]
     
     return coin_name
 
-
+# Helper function that carries the whole process of making a prediction
 def make_prediction(image, model, classes):
     output = predict(image, model)
     top_prob, top_class = decode_predictions(model, output, classes)
@@ -81,3 +81,16 @@ def make_prediction(image, model, classes):
 
     return prediction, prob_rounded
 
+# Takes the prediction in csv format and returns a nice object
+def pretty_print_prediction(prediction):
+    split_pred = prediction.split(',')
+
+    coin, currency, country = split_pred
+
+    prediction_dict = {
+        "coin": coin,
+        "currency": currency,
+        "country": country
+        }
+    
+    return prediction_dict
