@@ -1,12 +1,19 @@
+.currencies__title {
+  padding-left: $m-size;
+}
+
 .currencies__list {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .currencies__column {
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-width: 200px;
+  padding-left: $m-size;
 }

@@ -5,8 +5,7 @@
   flex-direction: column;
   flex: 0;
 
-  p {
-    text-align: center;
+  > p {
     font-size: $font-size-large;
   }
 }

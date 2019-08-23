@@ -6,7 +6,7 @@ from flask_cors import CORS
 import os
 from io import BytesIO
 from PIL import Image
-from model.model import make_prediction, load_model, load_cat_to_name
+from model.model import make_prediction, load_model, load_cat_to_name, pretty_print_prediction
 from model.image import decode_image, transform_image, image_to_tensor
 
 # Start app
@@ -33,6 +33,7 @@ def root():
 
   # Instantiate the model
   prediction, prob_rounded = make_prediction(image, model, cat_to_name)
+  prediction = pretty_print_prediction(prediction)
 
   return jsonify({'data': prediction, 'prob_rounded':prob_rounded})
 
