@@ -32,9 +32,9 @@ def root():
   image = image_to_tensor(image)
 
   # Instantiate the model
-  prediction = make_prediction(image, model, cat_to_name)
+  prediction, prob_rounded = make_prediction(image, model, cat_to_name)
 
-  return jsonify(prediction)
+  return jsonify({'data': prediction, 'prob_rounded':prob_rounded})
 
 # Catch all routes
 @app.route('/', defaults={'path': ''})

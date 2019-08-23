@@ -49,7 +49,7 @@ def decode_predictions(model, output, classes):
     linear_probs, classes = torch.topk(output, num_classes)
 
     # Get the probabilities from in a range [0-1]
-    sm = torch.nn.Softmax()
+    sm = torch.nn.Softmax(dim=1)
     probs = sm(linear_probs)
 
     # Convert to arrays.
@@ -77,7 +77,7 @@ def make_prediction(image, model, classes):
     top_prob, top_class = decode_predictions(model, output, classes)
 
     prediction = get_coin_name(top_class, classes)
-    print('Security of prediction of {0:.2f}%'.format(top_prob*100))
+    prob_rounded = '{0:.2f}'.format(top_prob*100)
 
-    return prediction
+    return prediction, prob_rounded
 
