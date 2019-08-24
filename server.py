@@ -16,7 +16,7 @@ app = Flask(__name__,
   template_folder='static')
 
 # Activate CORS.
-CORS(app, resources={r'/*': {'origins': '*'}})
+CORS(app, resources={r'/*': {'origins': 'http://localhost:5000'}})
 
 # Global variables
 publicPath = '{}/'.format(os.getcwd())
