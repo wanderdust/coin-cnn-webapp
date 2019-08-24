@@ -14,7 +14,17 @@ Create the [virtual environment ](https://virtualenv.pypa.io/en/latest/) and act
 
 ```
 $ virtualenv venv
+```
+Activate the environment:
+
+* Activate on linux
+```
 $ venv/bin/activate
+```
+
+* Activate on windows
+```
+$ venv/Scripts/activate
 ```
 
 Install all the dependencies for both javascript and python:
