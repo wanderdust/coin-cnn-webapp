@@ -1,7 +1,7 @@
 # COIN IDENTIFIER!
 
 ## Installation
-This app is built with Javascript and Python, so make sure you have `pip` installed so you can install the python packages. Here is an [installation guide for pip](https://pip.pypa.io/en/stable/installing/).
+This app is built with Javascript and Python, so make sure you have `pip` and `node.js` installed. Here is an [installation guide for pip](https://pip.pypa.io/en/stable/installing/).
 
 ```
 $ git clone https://github.com/wanderdust/coin-cnn-webapp.git
@@ -41,7 +41,7 @@ $ deactivate
 
 1. Run build:
 ```
-$ npm run build:dev
+$ npm run build:prod
 ```
 
 2. Get the server up and running in `localhost:5000`
@@ -64,3 +64,77 @@ $ npm run test
 
 ## How it works:
 Choose an image of a coin and let the app make a prediction. It will tell you the value of the coin, type of currency and country of origin.
+
+************
+
+# Installation instructions for windows users:
+
+Windows users might prefer using conda as their environment manager, since it will be easier to install the pytorch library. Before you start make sure you have `node.js` and `conda` or `miniconda`.
+
+```
+$ git clone https://github.com/wanderdust/coin-cnn-webapp.git
+$ cd coin-cnn-webapp
+```
+## Create a virtual environment
+
+Create the [virtual environment ](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) and activate it:
+
+```
+$ conda create --name condaenv
+$ conda activate condaenv
+```
+
+To deactivate the environment:
+```
+$ conda deactivate
+```
+
+## Install dependencies
+
+Install the javascript dependencies with npm:
+```
+$ npm install
+```
+
+Install the python dependencies with conda:
+
+* Install pytorch (cpu):
+```
+$ conda install pytorch-cpu torchvision-cpu -c pytorch
+```
+
+* Install rest of dependencies:
+
+```
+$ conda install flask flask-cors numpy pillow
+```
+
+## Starting the app
+
+1. Set the environment variables for flask. You only need to run this once:
+
+```
+$ npm run start-windows
+```
+
+2. Build the app:
+```
+$ npm run build:prod
+```
+
+3. Start the app:
+```
+$ python server.py
+```
+
+## Development mode
+
+Get the dev server up and running in `localhost:8080`
+```
+$ npm run dev-server
+```
+
+Run the test suite
+```
+$ npm run test
+```
