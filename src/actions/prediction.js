@@ -13,7 +13,7 @@ export const setLoadingState = () => ({
 
 export const startSetCoinPrediction = imageFile => (dispatch, getState) => {
   dispatch(setLoadingState());
-  axios.post('/api/predict', imageFile, {
+  axios.post('/api/predict/', imageFile, {
     headers: {
       'Content-Type': imageFile.type
     }
