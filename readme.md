@@ -1,6 +1,8 @@
 # COIN IDENTIFIER!
 
-## Installation
+Choose an image of a coin and let the app make a prediction. It will tell you the value of the coin, type of currency and country of origin.
+
+# Installation
 This app is built with Javascript and Python, so make sure you have `pip` and `node.js` installed. Here is an [installation guide for pip](https://pip.pypa.io/en/stable/installing/).
 
 ```
@@ -62,14 +64,11 @@ Run the test suite
 $ npm run test
 ```
 
-## How it works:
-Choose an image of a coin and let the app make a prediction. It will tell you the value of the coin, type of currency and country of origin.
-
 ************
 
-# Installation instructions for windows users:
+# Installation instructions for windows users
 
-Windows users might prefer using conda as their environment manager, since it will be easier to install the pytorch library. Before you start make sure you have `node.js` and `conda` or `miniconda`.
+Pytorch library will be difficult to install via `pip` using windows, that's why windows users might prefer using `conda` as their environment manager. Before you start make sure you have `node.js` and `conda` or `miniconda` installed.
 
 ```
 $ git clone https://github.com/wanderdust/coin-cnn-webapp.git
