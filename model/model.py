@@ -1,96 +1,61 @@
-import torch
 import os
-from model.utils.resnet import resnet34
 import json
+import numpy as np
+from tensorflow.keras.models import Sequential, Model, load_model
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, Activation, BatchNormalization, GlobalAveragePooling2D
 
-# Load the model from a saved checkpoint
-def load_model(filepath):
-    '''
-        model.fc -> The (personalized) fully connected layers
-        model.load_sate_dict -> The trained weights
-        model.class_to_idx -> The index for each class
-    '''
+class Model:
 
-    checkpoint = torch.load(filepath, map_location='cpu')
-    model = resnet34(pretrained=False)
+    def __init__(self, int_to_dir_path, cat_to_name_path):
+        self.int_to_dir = self.load_json(int_to_dir_path)
+        self.cat_to_name = self.load_json(cat_to_name_path)
+        self.model = self.load_model()
 
-    model.fc = checkpoint['fc']
-    model.load_state_dict(checkpoint['state_dict'])
-    model.class_to_idx = checkpoint['class_to_idx']
+    def run(self, img):
+        prediction, prob = self.predict(img)
+        output = self.pretty_print_prediction(prediction, prob)
 
-    return model
-
-
-# Load the names corresponding to the labels
-def load_cat_to_name(filepath):
-    with open(filepath, 'r') as f:
-        cat_to_name = json.load(f)
-
-    return cat_to_name
+        return output, prob
 
 
-def predict(image, model):
-    model.eval()
-
-    # Load the image
-    image = image.unsqueeze(0)
-
-    # Forward pass.
-    output = model.forward(image)
-
-    return output
+    # Load the names corresponding to the labels
+    def load_json(self, filepath):
+        with open(filepath, 'r') as f:
+            my_json = json.load(f)
+        return my_json
 
 
-# Recieves an output and returns the class name and probability
-def decode_predictions(model, output, classes):
-    
-    # Extract results; linear_probs gives non-useful probability results
-    num_classes = len(classes)
-    linear_probs, classes = torch.topk(output, num_classes)
+    # Load the model from a saved checkpoint
+    def load_model(self):
+        model = load_model("model/utils/model.h5")
+        model.load_weights("model/utils/model.weights.best.hdf5")
 
-    # Get the probabilities from in a range [0-1]
-    sm = torch.nn.Softmax(dim=1)
-    probs = sm(linear_probs)
+        print("**Ready**")
+        return model
 
-    # Convert to arrays.
-    top_prob = probs.squeeze().detach().numpy()
-    top_class = classes.squeeze().detach().numpy()
+    def predict(self, image_tensor):
+        prediction = self.model.predict(image_tensor)
+        prediction_int = np.argmax(prediction)
 
-    # Get the right indices
-    idx_to_class = {val: key for key, val in model.class_to_idx.items()}
+        prediction_prob = np.squeeze(np.array(prediction))[prediction_int]
 
-    # Get the top class and its probability
-    top_class = idx_to_class[top_class[0]]
-    top_prob = top_prob[0]
+        dir_int = self.int_to_dir[str(prediction_int)]
+        label_name = self.cat_to_name[str(dir_int)]
 
-    return top_prob, top_class
+        return label_name, prediction_prob
+        
 
-# Pairs the category number with its name
-def get_coin_name (top_class, cat_to_name):
-    coin_name = cat_to_name[str(top_class)]
-    
-    return coin_name
+    # Takes the prediction in csv format and returns a nice object
+    def pretty_print_prediction(self, prediction, prob):
+        split_pred = prediction.split(',')
 
-# Helper function that carries the whole process of making a prediction
-def make_prediction(image, model, classes):
-    output = predict(image, model)
-    top_prob, top_class = decode_predictions(model, output, classes)
+        coin, currency, country = split_pred
 
-    prediction = get_coin_name(top_class, classes)
-    prob_rounded = '{0:.2f}'.format(top_prob*100)
-
-    return prediction, prob_rounded
-
-# Takes the prediction in csv format and returns a nice object
-def pretty_print_prediction(prediction):
-    split_pred = prediction.split(',')
-
-    coin, currency, country = split_pred
-
-    prediction_dict = {
-        "coin": coin,
-        "currency": currency,
-        "country": country
-        }
-    
-    return prediction_dict
+        prediction_dict = {
+            "coin": coin,
+            "currency": currency,
+            "country": country,
+            "prob_rounded": str(prob)
+            }
+        
+        return prediction_dict

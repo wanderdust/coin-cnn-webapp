@@ -10,34 +10,48 @@ $ git clone https://github.com/wanderdust/coin-cnn-webapp.git
 $ cd coin-cnn-webapp
 ```
 
-## Create a virtual environment
+## Create a virtual environment (optional)
 
-Create the [virtual environment ](https://virtualenv.pypa.io/en/latest/) and activate it:
+Create the virtual environment using [virtualenv](https://virtualenv.pypa.io/en/latest/) or [anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) and activate it:
 
 ```
-$ virtualenv venv
+$ virtualenv myenv
+
+or 
+
+$ conda create --name myenv
 ```
 Activate the environment:
 
 * Activate on linux
 ```
 $ venv/bin/activate
+
+or
+
+$ conda activate myenv
 ```
 
-* Activate on windows
+* Activate virtualenv on windows
 ```
 $ venv/Scripts/activate
-```
-
-Install all the dependencies for both javascript and python:
-```
-$ npm install
-$ pip install -r requirements.txt
 ```
 
 To deactivate the virtual environment:
 ```
 $ deactivate
+
+or
+
+$ conda deactivate
+```
+
+## Install dependencies
+
+Install all the dependencies for both javascript and python:
+```
+$ npm install # javascript dependencies
+$ pip install -r requirements.txt # python dependencies
 ```
 ## Starting the app
 
@@ -66,7 +80,7 @@ $ npm run test
 
 ************
 
-# Installation instructions for windows users
+# Installation instructions for windows
 
 Pytorch library will be difficult to install via `pip` using windows, that's why windows users might prefer using `conda` as their environment manager. Before you start make sure you have `node.js` and `conda` or `miniconda` installed.
 
@@ -95,18 +109,12 @@ Install the javascript dependencies with npm:
 $ npm install
 ```
 
-Install the python dependencies with conda:
-
-* Install pytorch (cpu):
-```
-$ conda install pytorch-cpu torchvision-cpu -c pytorch
-```
-
-* Install rest of dependencies:
+Install the python dependencies with pip:
 
 ```
-$ conda install flask flask-cors numpy pillow
+$ pip install -r requirements.txt
 ```
+
 
 ## Starting the app
 
