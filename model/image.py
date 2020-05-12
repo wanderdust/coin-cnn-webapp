@@ -16,9 +16,9 @@ def transform_image(image):
     # Resize image
     width, height = image.size
     if width > height:
-        image.thumbnail((np.Inf, 256))
+        image.thumbnail((1e10, 256))
     else:
-        image.thumbnail((256, np.Inf))
+        image.thumbnail((256, 1e10))
     
     # Crop image
     image = image.resize((224, 224))
