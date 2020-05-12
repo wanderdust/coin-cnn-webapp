@@ -1,6 +1,9 @@
 # COIN IDENTIFIER!
+## with keras!
 
 Choose an image of a coin and let the app make a prediction. It will tell you the value of the coin, type of currency and country of origin.
+
+Please contact me to get the pre-trained weights and model. They are too big for this repo.
 
 # Installation
 This app is built with Javascript and Python, so make sure you have `pip` and `node.js` installed. Here is an [installation guide for pip](https://pip.pypa.io/en/stable/installing/).
