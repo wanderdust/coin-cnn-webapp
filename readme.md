@@ -3,9 +3,25 @@
 
 Choose an image of a coin and let the app make a prediction. It will tell you the value of the coin, type of currency and country of origin.
 
-Please contact me to get the pre-trained weights and model. They are too big for this repo.
+# OPTION 1. Download Docker image and run
 
-# Installation
+Download working image from Docker Hub.
+
+1. Pull the image `docker pull wanderdust/coin-docker`
+
+2. Run `docker run --network="host" coin-docker` and find the app at `localhost:5000`
+
+The image is around 5 gb, so be patient with the download.
+
+
+____________________________
+
+
+# Option 2. Create virtual environment and install dependencies.
+
+Please contact me to get the pre-trained weights and model. They are too big for this repo. To avoid this use pytorch from branch master or use docker image.
+
+## Installation
 This app is built with Javascript and Python, so make sure you have `pip` and `node.js` installed. Here is an [installation guide for pip](https://pip.pypa.io/en/stable/installing/).
 
 ```
@@ -15,37 +31,19 @@ $ cd coin-cnn-webapp
 
 ## Create a virtual environment (optional)
 
-Create the virtual environment using [virtualenv](https://virtualenv.pypa.io/en/latest/) or [anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) and activate it:
+Create the virtual environment using [virtualenv](https://virtualenv.pypa.io/en/latest/) or [anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) and activate it (I'll use conda):
 
 ```
-$ virtualenv myenv
-
-or 
-
 $ conda create --name myenv
 ```
 Activate the environment:
 
-* Activate on linux
 ```
-$ venv/bin/activate
-
-or
-
 $ conda activate myenv
-```
-
-* Activate virtualenv on windows
-```
-$ venv/Scripts/activate
 ```
 
 To deactivate the virtual environment:
 ```
-$ deactivate
-
-or
-
 $ conda deactivate
 ```
 
@@ -53,8 +51,8 @@ $ conda deactivate
 
 Install all the dependencies for both javascript and python:
 ```
-$ npm install # javascript dependencies
-$ pip install -r requirements.txt # python dependencies
+$ npm install                               # javascript dependencies
+$ pip install -r requirements.txt           # python dependencies
 ```
 ## Starting the app
 
@@ -85,7 +83,7 @@ $ npm run test
 
 # Installation instructions for windows
 
-Pytorch library will be difficult to install via `pip` using windows, that's why windows users might prefer using `conda` as their environment manager. Before you start make sure you have `node.js` and `conda` or `miniconda` installed.
+Mostly the same installation but with a few differences. Before you start make sure you have `node.js` and `conda` or `miniconda` installed.
 
 ```
 $ git clone https://github.com/wanderdust/coin-cnn-webapp.git
@@ -148,11 +146,3 @@ Run the test suite
 ```
 $ npm run test
 ```
-
-## Run with docker
-
-1. Install docker
-
-2. From the root directory of the app run:  `docker build -t coin-docker .`
-
-3. Run `docker run --network="host" coin-docker` and find the app at `localhost:5000`
