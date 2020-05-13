@@ -148,3 +148,11 @@ Run the test suite
 ```
 $ npm run test
 ```
+
+## Run with docker
+
+1. Install docker
+
+2. From the root directory of the app run:  `docker build -t coin-docker .`
+
+3. Run `docker run --network="host" coin-docker` and find the app at `localhost:5000`

@@ -3,4 +3,3 @@ flask_cors
 pillow
 tensorflow
 numpy
-gunicorn

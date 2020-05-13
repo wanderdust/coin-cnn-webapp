@@ -1,3 +1,5 @@
 node_modules/
 venv/
 dist/
+model/utils/model.h5
+model/utils/model.weights.best.hdf5
