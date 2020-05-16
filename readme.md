@@ -1,12 +1,23 @@
 # COIN IDENTIFIER!
-## with MobileNetV2 from Keras!
+## with keras!
 
 Choose an image of a coin and let the app make a prediction. It will tell you the value of the coin, type of currency and country of origin.
 
-# OPTION 1. Build image using Dockerfile
+# OPTION 1. Download Docker image and run
+
+## Option A. Download working image from Docker Hub.
+
+1. Pull the image `docker pull wanderdust/coin-mobilenet`
+
+2. Run `docker run --network="host" wanderdust/coin-mobilenet` and find the app at `localhost:5000`
+
+The image is around 4 gb, so be patient with the download.
+
+
+## Option B. Build image using Dockerfile
 
 1. Install docker
-    
+
 2. Run `docker build -t coin-app .` from app's root directory.
 
 3. After build run `docker run --network="host" coin-app` and the app will show up in `localhost:5000`
