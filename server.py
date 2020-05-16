@@ -33,9 +33,9 @@ def root():
   image = decoder.decode(request.data)
   # Instantiate the model
   prediction, prob = model.run(image)
-  prob_format = "{:.2f}".format(prob*100)
-
-  return jsonify({'data': prediction, 'prob_rounded':prob_format})
+  #prob_format = "{:.2f}".format(prob*100)
+  
+  return jsonify({'data': prediction, 'prob_rounded':prediction["confidence"]})
 
 # Catch all routes
 @app.route('/', defaults={'path': ''})

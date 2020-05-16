@@ -19,7 +19,6 @@ export const PredictionData = ({ prediction }) => (
       <p className="prediction__prob">
         <b>Confidence in prediction:</b>
         {prediction.prob_rounded}
-        %
       </p>
     </div>
   </div>

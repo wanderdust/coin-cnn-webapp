@@ -1,6 +1,7 @@
 from PIL import Image
 import numpy as np
 from io import BytesIO
+from keras.preprocessing.image import ImageDataGenerator
 
 class Image_Decoder:
 
@@ -8,8 +9,9 @@ class Image_Decoder:
         image_pil = self.decode_image(image)
         np_image = self.transform_image(image_pil)
         img_tensor = self.image_to_tensor(np_image)
+        img_norm = self.normalise(img_tensor)
 
-        return img_tensor
+        return img_norm
 
     # Decode from text to image
     def decode_image(self, image):
@@ -33,10 +35,6 @@ class Image_Decoder:
         # Convert to numpy and normalize
         np_image = np.array(image)/255
 
-        # Normalize
-        mean = [0.485, 0.456, 0.406]
-        std = [0.229, 0.224, 0.225]
-        img = (img - mean)/std
 
         return np_image
 
@@ -44,10 +42,16 @@ class Image_Decoder:
         # Transpose for image to have the correct dimensions, depth first.
         return np.expand_dims(image, axis=0)
 
-    def unormalize_image(np_image):
-        # Undo preprocessing
-        mean = np.array([0.485, 0.456, 0.406])
-        std = np.array([0.229, 0.224, 0.225])
-        image = std * image + mean
+    def normalise(self, img):
 
-        return image
+        generator = ImageDataGenerator(
+            featurewise_std_normalization=True,
+            samplewise_std_normalization=True,
+            rescale=1./255)
+        image_flow = generator.flow(
+            img,
+            y=None,
+            batch_size=1
+        )
+
+        return image_flow.next()

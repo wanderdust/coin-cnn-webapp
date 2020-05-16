@@ -27,8 +27,8 @@ class Model:
 
     # Load the model from a saved checkpoint
     def load_model(self):
-        model = load_model("model/utils/model.h5")
-        model.load_weights("model/utils/model.weights.best.hdf5")
+        model = load_model("model/utils/mobilenet.h5")
+        model.load_weights("model/utils/mobilenet.weights.best.hdf5")
 
         print("**Ready**")
         return model
@@ -51,11 +51,19 @@ class Model:
 
         coin, currency, country = split_pred
 
+        if prob >= 0.7:
+            confidence = "high"
+        elif prob < 0.7 and prob >= 0.5:
+            confidence = "medium"
+        else:
+            confidence = "low"
+
         prediction_dict = {
             "coin": coin,
             "currency": currency,
             "country": country,
-            "prob_rounded": str(prob)
+            "prob_rounded": str(prob),
+            "confidence": confidence
             }
         
         return prediction_dict
