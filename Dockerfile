@@ -1,8 +1,5 @@
 FROM python:3.7
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
-    apt-get install -y nodejs
-
 
 # Create app directory
 WORKDIR /app
@@ -14,8 +11,10 @@ COPY package-lock.json ./package-lock.json
 COPY package.json ./package.json
 COPY ./requirements.txt /app/requirements.txt
 
-RUN npm install
-RUN pip install -r requirements.txt
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install && \
+    pip install --no-cache-dir -r requirements.txt
 
 COPY . /app
 

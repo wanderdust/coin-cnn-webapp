@@ -33,9 +33,21 @@ class Image_Decoder:
         # Convert to numpy and normalize
         np_image = np.array(image)/255
 
+        # Normalize
+        mean = [0.485, 0.456, 0.406]
+        std = [0.229, 0.224, 0.225]
+        img = (img - mean)/std
 
         return np_image
 
     def image_to_tensor(self, image):
         # Transpose for image to have the correct dimensions, depth first.
         return np.expand_dims(image, axis=0)
+
+    def unormalize_image(np_image):
+        # Undo preprocessing
+        mean = np.array([0.485, 0.456, 0.406])
+        std = np.array([0.229, 0.224, 0.225])
+        image = std * image + mean
+
+        return image
