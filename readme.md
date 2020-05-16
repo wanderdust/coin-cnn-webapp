@@ -28,8 +28,6 @@ ____________________________
 
 # Option 2. Create virtual environment and install dependencies.
 
-Please contact me to get the pre-trained weights and model. They are too big for this repo. To avoid this use pytorch from branch master or use docker image.
-
 ## Installation
 This app is built with Javascript and Python, so make sure you have `pip` and `node.js` installed. Here is an [installation guide for pip](https://pip.pypa.io/en/stable/installing/).
 
