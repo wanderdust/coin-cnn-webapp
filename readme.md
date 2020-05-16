@@ -17,7 +17,7 @@ The image is around 5 gb, so be patient with the download.
 ## Option B. Build image using Dockerfile
 
 1. Install docker
-
+    
 2. Run `docker build -t coin-app .` from app's root directory.
 
 3. After build run `docker run --network="host" wanderdust/coin-docker` and the app will show up in `localhost:5000`
