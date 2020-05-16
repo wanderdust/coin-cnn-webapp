@@ -1,7 +1,6 @@
 from PIL import Image
 import numpy as np
 from io import BytesIO
-from keras.preprocessing.image import ImageDataGenerator
 
 class Image_Decoder:
 
@@ -44,14 +43,8 @@ class Image_Decoder:
 
     def normalise(self, img):
 
-        generator = ImageDataGenerator(
-            featurewise_std_normalization=True,
-            samplewise_std_normalization=True,
-            rescale=1./255)
-        image_flow = generator.flow(
-            img,
-            y=None,
-            batch_size=1
-        )
+        mean = [0.485, 0.456, 0.406]
+        std = [0.229, 0.224, 0.225]
+        img = (img - mean)/std
 
-        return image_flow.next()
+        return img
