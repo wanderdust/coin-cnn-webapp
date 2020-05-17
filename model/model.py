@@ -1,9 +1,13 @@
 import os
 import json
 import numpy as np
-from tensorflow.keras.models import Sequential, Model, load_model
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, Activation, BatchNormalization, GlobalAveragePooling2D
+import tensorflow as tf
+import keras
+from keras.models import Sequential, Model, load_model
+from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, Activation, BatchNormalization, GlobalAveragePooling2D
 
+session = tf.Session(graph=tf.Graph())    
+    
 class Model:
 
     def __init__(self, int_to_dir_path, cat_to_name_path):
@@ -27,14 +31,18 @@ class Model:
 
     # Load the model from a saved checkpoint
     def load_model(self):
-        model = load_model("model/utils/mobilenet.h5")
-        model.load_weights("model/utils/mobilenet.weights.best.hdf5")
+        with session.graph.as_default():
+            keras.backend.set_session(session)
+            model = load_model("model/utils/mobilenet.h5")
+        #model.load_weights("model/utils/mobilenet.weights.best.hdf5")
 
         print("**Ready**")
         return model
 
     def predict(self, image_tensor):
-        prediction = self.model.predict(image_tensor)
+        with session.graph.as_default():
+            keras.backend.set_session(session)
+            prediction = self.model.predict(image_tensor)
         prediction_int = np.argmax(prediction)
 
         prediction_prob = np.squeeze(np.array(prediction))[prediction_int]
