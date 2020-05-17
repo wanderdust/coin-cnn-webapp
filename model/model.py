@@ -28,7 +28,6 @@ class Model:
     # Load the model from a saved checkpoint
     def load_model(self):
         model = load_model("model/utils/mobilenet.h5")
-        model.load_weights("model/utils/mobilenet.weights.best.hdf5")
 
         print("**Ready**")
         return model
